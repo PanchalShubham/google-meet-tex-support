@@ -1,44 +1,7 @@
-/* ***********************************************************************************
-MIT License
-
-Copyright (c) 2021 panchalshubham
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-**************************************************************************************** */
-
-// ==UserScript==
-// @name         Google Meet Tex Support
-// @namespace    https://meet.google.com/
-// @version      0.2
-// @description  "Adds Tex parsing for Google Meet"
-// @author       Shubham Panchal (shubhampanchal9773@gmail.com)
-// @match        https://meet.google.com/*
-// @require      https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js
-// @require      https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js
-// @require      https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js
-// ==/UserScript==
-
-// logging the startup of script
-console.log('[Google Meet Tex Support]: Started Script!');
-
+console.log(`sciprt started!`);
 // parses the Tex in ChatBox
 function addTexParser() {
+    console.log('invoked addTexParser!');
     // get the head
     let head = document.getElementsByTagName('head')[0];
     // check if head is available
@@ -53,15 +16,16 @@ function addTexParser() {
             display: flex;
             align-items: center;
         }
-        .oIy2qc > p{
+        .oIy2qc:first-child{
             margin: 0px !important;
             display: inline-block !important;
+            white-space: none;
         }
         .tex_parser_toggler_container{
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 5px;
+            padding: 10px;
             background: #f1f3f4;
         }
         #tex_parser_toggler {
@@ -92,7 +56,7 @@ function addTexParser() {
         #tex_parser_toggler:checked::after {
           left: calc(100% - 18px);
           background: #00796b;
-        }
+        }        
     </style>
     `;
     const tm = texmath.use(katex);
@@ -100,7 +64,7 @@ function addTexParser() {
         throwOnError: true,
         engine: katex,
         delimiters:'dollars',
-        katexOptions: {
+        katexOptions: { 
             macros: {"\\RR": "\\mathbb{R}"}
         },
     });
@@ -114,6 +78,7 @@ function addTexParser() {
 
     // wait until the chat window is opened
     let interval = setInterval(()=>{
+        console.log('waiting!');
         const messageClass = `oIy2qc`;
         // get the message container
         let messageDiv = document.querySelector(`div[jsname="xySENc"]`);
@@ -144,8 +109,9 @@ function addTexParser() {
             // get the target
             let target = event.target;
             let classList = target.classList;
+            if (!classList) return;
             // check if target's classList contains oIy2qc
-            if (classList.length === 1
+            if (classList.length === 1 
                     && classList[0] === messageClass) {
                 parseText(target);
             } else {
@@ -162,9 +128,5 @@ function addTexParser() {
     }, 1000);
 }
 
-// when document is loaded execute script
-document.onreadystatechange = (event)=>{
-    if (document.readyState === 'complete' || document.readyState === 'interactive'){
-        setTimeout(addTexParser, 1000);
-    }
-}
+// invoke the addTexParser!
+addTexParser();

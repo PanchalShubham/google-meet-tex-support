@@ -1,0 +1,53 @@
+.container{
+    min-width: 300px;
+    font-family: 'Libre Baskerville', serif;
+}
+.header{
+    font-weight: bold;
+    font-size: 18px;
+}
+.subheader{
+    font-size: 15px;
+}
+.menu-items{
+    margin: 10px 0px;
+}
+.menu-item{
+    padding: 5px;
+}
+
+.menu-item:hover {
+    background-color: #ededed;
+}
+.menu-item:first-child:hover{
+    background-color: white;
+}
+.menu-item a{
+    color: black !important;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+}
+.menu-item:first-child{
+    cursor: alias;
+}
+
+.menu-item span{
+    font-size: 16px;
+    min-width: 20px;
+    text-align: center;
+    margin-right: 5px;
+}
+.menu-item .success{
+    color: #0f5132;
+}
+.menu-item .info{
+    color: #664d03;
+}
+.menu-item .help{
+    color: #084298;
+}
+.menu-item .danger{
+    color: #842029;
+}
