@@ -1,7 +1,6 @@
-console.log(`sciprt started!`);
+console.log(`[Google Meet Math Support] Sciprt started!`);
 // parses the Tex in ChatBox
 function addTexParser() {
-    console.log('invoked addTexParser!');
     // get the head
     let head = document.getElementsByTagName('head')[0];
     // check if head is available
@@ -11,12 +10,13 @@ function addTexParser() {
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.css" integrity="sha384-b1jwlKx2fZPr3OngW6CqA3niWl98suSWQIspVVyrImbCVlqAN4FS0K3kMQxWrFTy" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>    <style>
-        .jtgSgd{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">        
+    .jtgSgd{
             display: flex;
             align-items: center;
         }
-        .oIy2qc:first-child{
+        .oIy2qc > *{
             margin: 0px !important;
             display: inline-block !important;
             white-space: none;
@@ -60,7 +60,20 @@ function addTexParser() {
     </style>
     `;
     const tm = texmath.use(katex);
-    const md = markdownit().use(tm, {
+    const md = markdownit({
+        html: true,
+        linkify: true,
+        typographer: true,
+        quotes: '“”‘’',
+        highlight: function(str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return hljs.highlight(lang, str).value;
+                } catch (__)  { }
+            }
+            return '';
+        }
+    }).use(tm, {
         throwOnError: true,
         engine: katex,
         delimiters:'dollars',
@@ -78,7 +91,6 @@ function addTexParser() {
 
     // wait until the chat window is opened
     let interval = setInterval(()=>{
-        console.log('waiting!');
         const messageClass = `oIy2qc`;
         // get the message container
         let messageDiv = document.querySelector(`div[jsname="xySENc"]`);
@@ -111,8 +123,7 @@ function addTexParser() {
             let classList = target.classList;
             if (!classList) return;
             // check if target's classList contains oIy2qc
-            if (classList.length === 1 
-                    && classList[0] === messageClass) {
+            if (classList.length === 1 && classList[0] === messageClass) {
                 parseText(target);
             } else {
                 // query the children with this class then

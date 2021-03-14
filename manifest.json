@@ -1,6 +1,7 @@
 {
     "name": "Meet Math Support",
     "description": "Parse basic markdown and tex-equations in your Google Meet chat window!",
+    "author": "Shubham Panchal (shubhampanchal9773@gmail.com)",
     "version": "0.0.1",
     "manifest_version": 2,
     "icons": {
@@ -12,9 +13,5 @@
     },
     "permissions": [
         "https://meet.google.com/*"
-    ],
-    "background": {
-        "scripts": ["popup.js"],
-        "persistent": false
-    }
+    ]
 }

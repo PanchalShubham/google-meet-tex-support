@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Meet Math Support</title>
+    <link rel="shortcut icon" href="icon_128.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.css" integrity="sha384-b1jwlKx2fZPr3OngW6CqA3niWl98suSWQIspVVyrImbCVlqAN4FS0K3kMQxWrFTy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">
+    <link rel="stylesheet" href="resources/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="brand">
+            <img src="icon_128.jpg" />
+            <h1>Google Meet Math Support</h1>
+        </div>
+        <div class="header">
+            <h1>Introduction</h1>
+            <p>
+                A Google Chrome extension to parse markdown and tex-equations in Google Meet Chat Window! <br />
+                <!-- A tutorial on how to use extension can be found at <a
+                    href="https://www.google.com">https://www.google.com</a> <br /> -->
+                The following are the dependencies:<br />
+            <ul>
+                <li><a href="https://github.com/goessner/markdown-it-texmath">markdown-it-texmath</a> is used for
+                    parsing markdown and tex-math</li>
+                <li><a href="https://github.com/markdown-it/markdown-it">markdown-it</a> is used for parsing markdown!
+                </li>
+                <li><a href="https://katex.org/">KaTex</a> is used for rendering Tex math in HTML!</li>
+                <li><a href="https://github.com/markdown-it/markdown-it-emoji">markdown-it-emoji</a> is used for parsing
+                    emoji!</li>
+                <li><a href="https://highlightjs.org/">highlight.js</a> is used for syntax highlighting!</li>
+            </ul> <br/>
+            </p>
+            <p>
+                The following are important things to note:
+                <ul>
+                    <li>
+                        This extension do not send data to anywhere and therefore it can only parses the messages being receieved in the chat window!
+                    </li>
+                    <li>
+                        The parsed messages are visible to you only in parsed format and others 
+                        will see the plain text unless they have installed the same extension.
+                    </li>
+                    <li>
+                        To allow the parsing you need to click on the extension everytime you attend a meet 
+                        because we don't want unnecessary message parsing overhead unless required. 
+                    </li>
+                </ul>
+                <br/>
+                  
+            </p>
+        </div>
+        <div class="header">
+            <h1>References</h1>
+            <div class="ref-item">
+                <div class="title"># Markdown</div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code class="parseInput">
+# heading1
+## heading2
+### heading3
+#### heading4
+##### heading5
+###### heading6  
+
+## horizontal rules
+---  
+  
+
+## typographic replacements
+(c) (C) (r) (R) (tm) (TM) (p) (P) +-  
+  
+## emphasis
+--- 
+**This is bold text**  
+__This is bold text__  
+*This is italic text*  
+_This is italic text_  
+***This is bold and italic text***  
+~~strike-through~~  
+  
+  
+## lists  
+--- 
+Unordered  
++ Create a list by starting a line with `+`, `-`, or `*`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit
++ Very easy!
+
+Ordered  
+1. Lorem ipsum dolor sit amet  
+2. Consectetur adipiscing elit  
+3. Integer molestie lorem at massa  
+
+1. You can use sequential numbers...  
+1. ...or keep all the numbers as `1.`  
+
+
+## Tables
+---  
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+
+Right aligned columns
+
+| Option | Description |
+| ------:| -----------:|
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+
+## Links
+---  
+[link text](http://dev.nodeca.com)  
+[link with title](http://nodeca.github.io/pica/demo/ "title text!")  
+Autoconverted link https://github.com/nodeca/pica  
+
+## Images
+---  
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")  
+
+
+
+                                    </code>
+                                </pre>
+                            </td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="ref-item">
+                <div class="title"># Tex Equations</div>
+                <p>Write a tex equation within $...$ or $$...$$</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="parseInput">$e=mc^2$</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td class="parseInput">And there $\mu \ne 0$</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td class="parseInput">$\mathcal{L} = \dfrac{1}{N}\sum_{i=1}^{n}(\hat{y_i} - y_i)^2$</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td class="parseInput">$\begin{pmatrix}x_2 \\ y_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\cdot \begin{pmatrix} x_1 \\ y_1 \end{pmatrix}$</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code class="parseInput">
+$$
+    {\bold e}(\varphi) = 
+    \begin{pmatrix}
+        \cos\varphi \\
+        \sin\varphi
+    \end{pmatrix}
+$$        
+                                    </code>
+                                </pre>
+                            </td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code class="parseInput">
+$$
+    \begin{pmatrix}
+            x_2 \\ 
+            y_2 
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+            A & B \\ 
+            C & D 
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix} 
+            x_1 \\
+            y_1 
+    \end{pmatrix}
+$$ (1)
+                                    </code>
+                                </pre>
+                            </td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code class="parseInput">
+$$
+    \oint_V f(s) \,ds
+$$ (2)
+                                    </code>
+                                </pre>
+                            </td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ref-item">
+                <div class="title"># Code Highlighting</div>
+                <p>
+                    To highlight the source-code use the following syntax <br />
+                    ```language<br />
+                    // your code here <br />
+                    ```
+                </p>
+                <table class="example-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code class="parseInput">
+```c
+#include &lt;stdio.h&gt;
+int main() {
+    printf ("Hello World!\n");
+    return 0;
+}
+```
+                                    </code>
+                                </pre>
+                            </td>
+                            <td>
+                                <div class="parseOutput"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <code class="parseInput">
+```java
+public class Main{
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+```
+                                    </code>
+                                </pre>
+                            </td>
+                            <td>
+                                <div class="parseOutput"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="ref-item">
+                <div class="title"># Emoji shortcuts</div>
+                <p>
+                <table class="example-table">
+                    <thead>
+                        <tr>
+                            <td>Category</td>
+                            <td>Shortcuts</td>
+                            <td>Preview</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>angry</td>
+                            <td class="parseInput">[ '&gt;:(', '&gt;:-(' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>blush</td>
+                            <td class="parseInput">[ ':")', ':-")' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>broken_heart</td>
+                            <td class="parseInput">[ '&lt;/3', '&lt;\\3' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>confused</td>
+                            <td class="parseInput">[ ':/', ':-/' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>cry</td>
+                            <td class="parseInput">[ ":'(", ":'-(", ':,(', ':,-(' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>frowning</td>
+                            <td class="parseInput">[ ':(', ':-(' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>heart</td>
+                            <td class="parseInput">[ '&lt;3' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>imp</td>
+                            <td class="parseInput">[ ']:(', ']:-(' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>innocent</td>
+                            <td class="parseInput">[ 'o)', 'O)', 'o-)', 'O-)', '0)', '0-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>joy</td>
+                            <td class="parseInput">[ ":')", ":'-)", ':,)', ':,-)', ":'D", ":'-D", ':,D', ':,-D' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>kissing</td>
+                            <td class="parseInput">[ ':*', ':-*' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>laughing</td>
+                            <td class="parseInput">[ 'x-)', 'X-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>neutral_face</td>
+                            <td class="parseInput">[ ':|', ':-|' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>open_mouth</td>
+                            <td class="parseInput">[ ':o', ':-o', ':O', ':-O' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>rage</td>
+                            <td class="parseInput">[ ':@', ':-@' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>smile</td>
+                            <td class="parseInput">[ ':D', ':-D' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>smiley</td>
+                            <td class="parseInput">[ ':)', ':-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>smiling_imp</td>
+                            <td class="parseInput">[ ']:)', ']:-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>sob</td>
+                            <td class="parseInput">[ ":,'(", ":,'-(", ';(', ';-(' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>stuck_out_tongue</td>
+                            <td class="parseInput">[ ':P', ':-P' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>sunglasses</td>
+                            <td class="parseInput">[ '8-)', 'B-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>sweat</td>
+                            <td class="parseInput">[ ',:(', ',:-(' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>sweat_smile</td>
+                            <td class="parseInput">[ ',:)', ',:-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>unamused</td>
+                            <td class="parseInput">[ ':s', ':-S', ':z', ':-Z', ':$', ':-$' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>wink</td>
+                            <td class="parseInput">[ ';)', ';-)' ]</td>
+                            <td class="parseOutput"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>Playground</h1>
+            <p>Try typing a message and see how it's parsed!</p>
+        </div>
+        <div class="playground">
+            <div id="message_container"></div>
+            <textarea class="messenger" id="messenger" placeholder="Type a message"></textarea>
+        </div>
+
+        <div class="header">
+            <h1>Donate</h1>
+            <p>
+                I'm Shubham Panchal, author of this extension! Your donation will help me to learn new skills <br/>
+                Any donation no matter how small or big will be deeply appreciated. I thank you for your consideration! <br/>
+                GooglePay, Paytm, PhonePe: +91 9773669462 <br/>
+                PayPal: paypal.me/panchalshubham <br/>
+                UPI: shubhampanchal9773@okhdfcbank, shubhampanchal9773@ybl<br/>
+            </p>
+        </div>
+
+        <div class="copyright">
+            Copyright &copy; 2021 <a href="https://panchalshubham.github.io/panchalshubham">Shubham Panchal</a> (shubhampanchal9773@gmail.com)<br/>
+            <a href="LICENSE">MIT LICENSE</a>
+        </div>
+    </div>
+
+    <script src="js/highlight.min.js"></script>
+    <script src="js/markdown-it-emoji.js"></script>
+    <script src="js/markdown-it.min.js"></script>
+    <script src="js/katex.min.js"></script>
+    <script src="js/texmath.min.js"></script>
+    <script src="resources/index.js"></script>
+</body>
+
+</html>
