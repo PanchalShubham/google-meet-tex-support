@@ -58,7 +58,11 @@ function parseAll() {
     let length = inputs.length;
     for (let i = 0; i < length; ++i) {
         let text = String(inputs[i].innerText).trim();
-        let html = md.render(text);
-        outputs[i].innerHTML = html;
+        try{
+            let html = md.render(text);
+            outputs[i].innerHTML = html;    
+        } catch (error){ 
+            console.log(text);
+        }
     }
 }; parseAll();

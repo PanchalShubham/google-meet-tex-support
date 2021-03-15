@@ -7,11 +7,11 @@ function addTexParser() {
     if (!head)  return;
     // add the CSS for beautiful display
     head.innerHTML += `
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.css" integrity="sha384-b1jwlKx2fZPr3OngW6CqA3niWl98suSWQIspVVyrImbCVlqAN4FS0K3kMQxWrFTy" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">        
     .jtgSgd{
             display: flex;
             align-items: center;
@@ -85,8 +85,10 @@ function addTexParser() {
     // parses the text
     function parseText(item) {
         let text = item.innerText;
-        let html = md.render(text);
-        item.innerHTML = html;
+        try{
+            let html = md.render(text);
+            item.innerHTML = html;    
+        } catch (error) { }
     }
 
     // wait until the chat window is opened
