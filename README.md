@@ -1,16 +1,12 @@
-# google-meet-tex-support
-This is a Greasemonkey/Tampermonkey user script which can be used to parse tex-equations in chat-window!
-
-# How to use  
-1. Install [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) (if you are using Firefox) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) (if you are using Chrome)
-2. Add `script.js` as a new script to Greasemonkey/Tampermonkey
-3. Browse https://meet.google.com
-4. Write markdown or inline equations using $..$ or block equations using $$..$$
-
+# google-meet-math-support
+This is a chrome extenstion to parse markdown and tex-equations in Google Meet Chat Window!  
+- Click [here](https://panchalshubham.github.io/google-meet-tex-support/) to browse the docs  
+- Click [here](https://panchalshubham.github.io/google-meet-tex-support#references) to browse the docs  
+- Click [here](https://panchalshubham.github.io/google-meet-tex-support#playground) to browse the playground  
 
 # Previews
-![preview1](./preview/preview1.png)  
-![preview2](./preview/preview2.png)  
+![preview1](./preview/preview1.jpg)  
+![preview2](./preview/preview2.jpg)  
 
 # Suggestions?
 Please open an issue or code it up and send a pull request.  

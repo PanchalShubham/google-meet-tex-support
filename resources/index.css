@@ -80,3 +80,6 @@ table pre{
     text-align: center;
     margin: 10px 0px;
 }
+.preview {
+    width: 100%;
+}

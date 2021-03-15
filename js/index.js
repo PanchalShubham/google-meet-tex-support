@@ -12,7 +12,8 @@ function addTexParser() {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.css" integrity="sha384-b1jwlKx2fZPr3OngW6CqA3niWl98suSWQIspVVyrImbCVlqAN4FS0K3kMQxWrFTy" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">        
-    .jtgSgd{
+    <style>
+        .jtgSgd{
             display: flex;
             align-items: center;
         }
@@ -56,7 +57,17 @@ function addTexParser() {
         #tex_parser_toggler:checked::after {
           left: calc(100% - 18px);
           background: #00796b;
-        }        
+        }  
+        ul {
+            margin: 0px !important;
+        }  
+        table, table td, table th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table td{
+            padding: 5px !important;
+        }    
     </style>
     `;
     const tm = texmath.use(katex);
@@ -64,7 +75,7 @@ function addTexParser() {
         html: true,
         linkify: true,
         typographer: true,
-        quotes: '“”‘’',
+        quotes: '>',
         highlight: function(str, lang) {
             if (lang && hljs.getLanguage(lang)) {
                 try {
@@ -73,7 +84,8 @@ function addTexParser() {
             }
             return '';
         }
-    }).use(tm, {
+    }).use(markdownitEmoji)
+    .use(tm, {
         throwOnError: true,
         engine: katex,
         delimiters:'dollars',
@@ -81,14 +93,16 @@ function addTexParser() {
             macros: {"\\RR": "\\mathbb{R}"}
         },
     });
-
+    
     // parses the text
     function parseText(item) {
         let text = item.innerText;
         try{
             let html = md.render(text);
             item.innerHTML = html;    
-        } catch (error) { }
+        } catch (error) {
+            console.log(text);
+        }
     }
 
     // wait until the chat window is opened
