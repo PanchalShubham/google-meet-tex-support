@@ -1,6 +1,29 @@
+// simple log to see script status!
 console.log(`[Google Meet Math Support] Sciprt started!`);
-// parses the Tex in ChatBox
-function addTexParser() {
+
+// adds the parser toggler to the footer!
+function addParseToggler() {
+    // get the item to place checkbox
+    let checkDiv = document.querySelector(`div[jsname="x1nnfb"]`);
+    // check if item is available
+    if (!checkDiv)  return;
+    // create input element
+    let checkbox = document.createElement(`input`);
+    checkbox.setAttribute(`type`, `checkbox`);
+    checkbox.setAttribute(`id`, `tex_parser_toggler`);
+    checkbox.checked = true;
+    let span = document.createElement(`span`);
+    span.innerText = "Parse Message";
+    span.setAttribute(`style`, `font-size: 18px;`)
+    let container = document.createElement(`div`);
+    container.classList.add(`tex_parser_toggler_container`);
+    container.appendChild(checkbox);
+    container.appendChild(span);
+    checkDiv.appendChild(container);
+};
+
+// adds  the styles to the head
+function addStyles() {
     // get the head
     let head = document.getElementsByTagName('head')[0];
     // check if head is available
@@ -70,6 +93,16 @@ function addTexParser() {
         }    
     </style>
     `;
+}
+
+// parses the Tex in ChatBox
+function addTexParser() {
+    // add the styles
+    addStyles();
+    // add the parser toggler
+    addParseToggler();
+
+    // create parser instance
     const tm = texmath.use(katex);
     const md = markdownit({
         html: true,
@@ -105,6 +138,8 @@ function addTexParser() {
         }
     }
 
+    // get the toggler
+    let checkbox = document.getElementById('tex_parser_toggler');
     // wait until the chat window is opened
     let interval = setInterval(()=>{
         const messageClass = `oIy2qc`;
@@ -112,28 +147,11 @@ function addTexParser() {
         let messageDiv = document.querySelector(`div[jsname="xySENc"]`);
         // check if message container is available
         if (!messageDiv)  return;
-        // get the item to place checkbox
-        let checkDiv = document.querySelector(`div[jsname="x1nnfb"]`);
-        // check if item is available
-        if (!checkDiv)  return;
-        // create input element
-        let checkbox = document.createElement(`input`);
-        checkbox.setAttribute(`type`, `checkbox`);
-        checkbox.setAttribute(`id`, `tex_parser_toggler`);
-        let span = document.createElement(`span`);
-        span.innerText = "Parse Tex";
-        span.setAttribute(`style`, `font-size: 18px;`)
-        let container = document.createElement(`div`);
-        container.classList.add(`tex_parser_toggler_container`);
-        container.appendChild(checkbox);
-        container.appendChild(span);
-        checkDiv.appendChild(container);
-
 
         // parses the equations into latex
         function eventHandler(event){
             // check if parsing is enabled
-            if (!checkbox.checked)   return;
+            if (!checkbox || !checkbox.checked)   return;
             // get the target
             let target = event.target;
             let classList = target.classList;
@@ -156,4 +174,4 @@ function addTexParser() {
 }
 
 // invoke the addTexParser!
-addTexParser();
+if (!document.getElementById(`tex_parser_toggler`)) addTexParser();
