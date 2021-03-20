@@ -19,18 +19,12 @@
 .menu-item:hover {
     background-color: #ededed;
 }
-.menu-item:first-child:hover{
-    background-color: white;
-}
 .menu-item a{
     color: black !important;
     text-decoration: none;
     cursor: pointer;
     font-size: 15px;
     display: flex;
-}
-.menu-item:first-child{
-    cursor: alias;
 }
 
 .menu-item span{
