@@ -57,6 +57,76 @@ function addStyles() {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">        
         <style>
+        .jtgSgd {
+            display    : flex;
+            align-items: center;
+          }
+          
+          .oIy2qc>*:not(table, th, td, hr, section) {
+            margin : 0px !important;
+            display: inline-block !important;
+          }
+          
+          table,
+          table td,
+          table th {
+            border         : 1px solid black;
+            border-collapse: collapse;
+          }
+          
+          table td {
+            padding: 5px !important;
+          }
+          
+          .emoji p {
+            display: inline-block;
+          }
+          
+          pre {
+            padding   : 5px;
+            background: #F6F6F6;
+          }
+          
+          .tex_parser_toggler_container {
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            padding        : 10px;
+            background     : #f1f3f4;
+          }
+          
+          #tex_parser_toggler {
+            position     : relative;
+            appearance   : none;
+            outline      : none;
+            width        : 40px;
+            height       : 18px;
+            border-radius: 10px;
+            background   : gray;
+            box-shadow   : none;
+            cursor       : pointer;
+            overflow     : hidden;
+            transition   : 0.8s;
+          }
+          
+          #tex_parser_toggler:checked {
+            background: #66aaa2;
+          }
+          
+          #tex_parser_toggler::after {
+            content      : '';
+            position     : absolute;
+            border-radius: inherit;
+            width        : 18px;
+            height       : 18px;
+            background   : #ffffff;
+            transition   : inherit;
+          }
+          
+          #tex_parser_toggler:checked::after {
+            left      : calc(100% - 18px);
+            background: #00796b;
+          }
         </style>
         `;
     }
