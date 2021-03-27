@@ -3,7 +3,25 @@
   align-items: center;
 }
 
-.oIy2qc>*:not(table, th, td, hr, section) {
+.oIy2qc > p, 
+.oIy2qc > div,
+.oIy2qc > section,
+.oIy2qc > h1,
+.oIy2qc > h1,
+.oIy2qc > h2,
+.oIy2qc > h3,
+.oIy2qc > h4,
+.oIy2qc > h5,
+.oIy2qc > h6,
+.oIy2qc > ul,
+.oIy2qc > ol,
+.oIy2qc > li,
+.oIy2qc > pre,
+.oIy2qc > blockquote {
+  margin : 0px !important;
+  display: inline-block !important;
+}
+.oIy2qc >*:not(table, th, td, hr, section) {
   margin : 0px !important;
   display: inline-block !important;
 }
