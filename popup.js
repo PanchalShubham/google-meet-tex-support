@@ -18,4 +18,4 @@
 //     });
 // });
 
-chrome.tabs.executeScript(null, {file: `js/parser_toggler.js`}, () => {})
+// chrome.tabs.executeScript(null, {file: `js/background.js`}, () => {})

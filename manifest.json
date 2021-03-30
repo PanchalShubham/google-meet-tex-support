@@ -2,7 +2,7 @@
     "name": "Meet Math Support",
     "description": "Parse basic markdown and tex-equations in your Google Meet chat window!",
     "author": "Shubham Panchal (shubhampanchal9773@gmail.com)",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "manifest_version": 2,
     "icons": {
         "128": "icon128.png"
@@ -10,7 +10,6 @@
     "content_scripts": [
         {
             "matches": ["https://meet.google.com/*"],
-            "css": ["css/custom.css"],
             "js": ["js/highlightjs.min.js", "js/katex.min.js", "js/markdown-it.min.js", "js/markdown-it-emoji.js", "js/texmath.min.js", "js/background.js"]
         }
     ],
